@@ -1,11 +1,10 @@
-﻿using System;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.UI;
 
-public class Main : MonoBehaviour
-{
+public class Main : MonoBehaviour{
     public string mode;
 
     public bool nPause = true;
@@ -46,8 +45,7 @@ public class Main : MonoBehaviour
     float addTimeScale = 0;
     [SerializeField] TextMeshProUGUI modeInd;
 
-    void Start()
-    {
+    void Start(){
         int modeNum = PlayerPrefs.GetInt("StartMode");
         if (modeNum != 0)
         {
@@ -79,17 +77,14 @@ public class Main : MonoBehaviour
                     break;
             }
         }
-        else
-        {
+        else{
             SceneManager.LoadScene("Menu");
         }
 
-        if (PlayerPrefs.GetInt("Up1Lvl") != 0)
-        {
+        if (PlayerPrefs.GetInt("Up1Lvl") != 0){
             UpgradeLoad();
         }
-        else
-        {
+        else{
             UpgradeSave();
         }
 
@@ -103,10 +98,8 @@ public class Main : MonoBehaviour
         modeInd.text = mode + " - " + ((timeScale + Math.Round(addTimeScale, 2)) * addTimeMod) + "pps";
     }
 
-    void Update()
-    {
-        if (nPause)
-        {
+    void Update(){
+        if (nPause){
             nowTime -= Time.deltaTime * (timeScale + addTimeScale) * addTimeMod;
 
             if (nowTime <= 0)
@@ -123,10 +116,8 @@ public class Main : MonoBehaviour
         }
     }
 
-    public void PressButton()
-    {
-        if (nPause)
-        {
+    public void PressButton(){
+        if (nPause){
             nowTime += resTime + 1 * up1Lvl;
             clicks++;
 
